@@ -1,0 +1,16 @@
+{
+    "Ryanair" : {
+        "name" : "Ryanair",
+        "main_image" : "../../assets/images/ryanair_main.png",
+        "second_image" : "../../assets/images/ryanair_second.png",
+        "header" : "The Revolution of Low Cost Airline Travel in Europe",
+        "text" : "Ryanair is an Irish low-cost airline founded in 1984. It has since grown to become one of Europe's leading airlines, profiting from deregulations of the European air industry in the 1990s. Ryanair's growth is reflected in its increase in passenger numbers and generated revenue. In 2020/21, the company had uplifted 27.5 million people and connected 216 destinations.\n\n One of the key factors that contributed to Ryanair's growth was its adoption of the low-cost airline model pioneered by Southwest Airlines in the United States. Ryanair implemented many of Southwest's cost-cutting measures, such as flying to secondary airports, using a single type of aircraft to reduce maintenance costs, and offering no-frills service.\n\nRyanair also developed its own unique methods for keeping costs low. For example, it charges passengers for many services that other airlines offer for free, such as checked baggage and seat selection. It also saves money by not providing complimentary food or drinks on its flights.\n\nRyanair's growth is expected to continue in the coming years. The company has raised its 5-year growth forecast from 33% to 50%, with pre-Covid traffic of 149 million expected to grow to over 225 million guests by March 2026."
+    },
+    "American Airlines" : {
+        "name" : "American Airlines",
+        "main_image" : "../../assets/images/aa_main.jpeg",
+        "second_image" : "../../assets/images/aa_second.jpeg",
+        "header" : "The Largest Airline in the World",
+        "text" : "American Airlines is the largest airline in the world by fleet size, revenue, scheduled passengers carried, scheduled passenger-kilometers flown, and number of destinations served. It is also the world's largest airline when measured by fleet size, revenue, scheduled passengers carried, and number of destinations served. It is also the world's largest airline when measured by fleet size, revenue, scheduled passengers carried, and number of destinations served.\n\nAmerican Airlines is the largest airline in the world by fleet size, revenue, scheduled passengers carried, scheduled passenger-kilometers flown, and number of destinations served. It is also the world's largest airline when measured by fleet size, revenue, scheduled passengers carried, and number of destinations served. It is also the world's largest airline when measured by fleet size, revenue, scheduled passengers carried, and number of destinations served.\n\nAmerican Airlines is the largest airline in the world by fleet size, revenue, scheduled passengers carried, scheduled passenger-kilometers flown, and number of destinations served. It is also the world's largest airline when measured by fleet size, revenue, scheduled passengers carried, and number of destinations served. It is also the world's largest airline when measured by fleet size, revenue, scheduled passengers carried, and number of destinations served."
+    }
+}

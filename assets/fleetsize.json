@@ -1,0 +1,98 @@
+{
+    "Ryanair" : {
+        "fleet_size" : 535,
+        "on_order_fleet" : 115,
+        "passengers_carried" : 160,
+        "stock_2023" : 5.62,
+        "code" : "RYR",
+        "Country" : "Ireland"
+    },
+    "Easyjet" : {
+        "fleet_size" : 333,
+        "on_order_fleet" : 168,
+        "passengers_carried" : 78,
+        "stock_2023" : 41,
+        "code" : "EZY",
+        "Country" : "UK"
+    },
+    "Wizz Air" : {
+        "fleet_size" : 177,
+        "on_order_fleet" : 369,
+        "passengers_carried" : 45,
+        "stock_2023" : 2.66,
+        "code" : "WIZZ",
+        "Country" : "Hungary"
+    },
+    "American Airlines" : {
+        "fleet_size" : 935,
+        "on_order_fleet" : 171,
+        "passengers_carried" : 215,
+        "stock_2023" : 0.66,
+        "code" : "AAL",
+        "Country" : "USA"
+    },
+    "United Airlines" : {
+        "fleet_size" : 777,
+        "on_order_fleet" : 0,
+        "passengers_carried" : 150,
+        "stock_2023" : 0.66,
+        "code" : "UAL",
+        "Country" : "USA"
+    },
+    "Delta Airlines" : {
+        "fleet_size" : 863,
+        "on_order_fleet" : 0,
+        "passengers_carried" : 160,
+        "stock_2023" : 0.66,
+        "code" : "DAL",
+        "Country" : "USA"
+    },
+    "Southwest Airlines" : {
+        "fleet_size" : 737,
+        "on_order_fleet" : 0,
+        "passengers_carried" : 130,
+        "stock_2023" : -8.79,
+        "code" : "LUV",
+        "Country" : "USA"
+    },
+    "British Airways" : {
+        "fleet_size" : 268,
+        "on_order_fleet" : 0,
+        "passengers_carried" : 100,
+        "stock_2023" : 6.15,
+        "code" : "BA",
+        "Country" : "UK"
+    },
+    "Qantas" : {
+        "fleet_size" : 122,
+        "on_order_fleet" : 0,
+        "passengers_carried" : 80,
+        "stock_2023" : -8.15,
+        "code" : "QAN",
+        "Country" : "Australia"
+    },
+    "Singapore Airlines" : {
+        "fleet_size" : 119,
+        "on_order_fleet" : 0,
+        "passengers_carried" : 80,
+        "stock_2023" : -1.23,
+        "code" : "SIA",
+        "Country" : "Singapore"
+    },
+    "TAM Airlines" : {
+        "fleet_size" : 120,
+        "on_order_fleet" : 0,
+        "passengers_carried" : 70,
+        "stock_2023" : -3.2,
+        "code" : "TAM",
+        "Country" : "Brazil"
+    },
+    "Ethiopian Airlines" : {
+        "fleet_size" : 102,
+        "on_order_fleet" : 0,
+        "passengers_carried" : 70,
+        "stock_2023" : 6.24,
+        "code" : "ETH",
+        "Country" : "Ethiopia"
+    }
+}

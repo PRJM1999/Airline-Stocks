@@ -1,0 +1,44 @@
+{
+    "North America" : {
+        "NumAirlines" : 95,
+        "Journeys" : "4.5 billion",
+        "growth2030" : "75%",
+        "marketSize" : "158 Billion",
+        "Summary" : "According to Oliver Wyman’s Global Fleet & MRO Forecast 2022-2032, the fleet will top its January 2020 apex of close to 28,000 planes in the first half of 2023. After that, they’re projecting compound annual growth of 4.1%, which should push the fleet to 38,100 by the beginning of 2032. However,  In the US, many airlines are bracing for labour cost inflation as pilots negotiate new agreements that include significant wage increases."
+    },
+    "South America" : {
+        "NumAirlines" : 30,
+        "Journeys" : "1.5 billion",
+        "growth2030" : "50%",
+        "marketSize" : "50 Billion",
+        "Summary" : "The South American sector is expected to see a significant increase in air traffic in the coming years, driven by the growing middle class and increasing tourism. However, the region still faces challenges, such as high operating costs, limited infrastructure, and restrictive government regulations, which can hinder the growth of the aviation industry. "
+    },
+    "Europe" : {
+        "NumAirlines" : 200,
+        "Journeys" : "6.5 billion",
+        "growth2030" : "40%",
+        "marketSize" : "200 Billion",
+        "Summary" : "The future financial prospects of the European aviation market remain uncertain due to various factors, including the ongoing Ukraine War and the impact of Brexit.  Low-cost airlines have become increasingly popular in Europe due to their affordability and convenience, and this trend is expected to continue, especially as travel demand recovers. Some of the low-cost airlines are expanding their operations and increasing their market share, while others are facing financial challenges. "
+    },
+    "Asia" : {
+        "NumAirlines" : 300,
+        "Journeys" : "10 billion",
+        "growth2030" : "50%",
+        "marketSize" : "300 Billion",
+        "Summary" : "The Asian aviation market has been experiencing significant growth over the past few decades and is expected to continue to expand in the coming years. The region has seen a surge in passenger traffic, driven by increasing middle-class incomes, urbanization, and a growing tourism industry. The rise of low-cost carriers and the expansion of airline networks have also contributed to the market's growth. According to industry projections, Asia is expected to become the largest aviation market in the world by 2024, surpassing North America."
+    },
+    "Africa" : {
+        "NumAirlines" : 50,
+        "Journeys" : "1 billion",
+        "growth2030" : "80%",
+        "marketSize" : "50 Billion",
+        "Summary" : "The African aviation market has significant growth potential, but it remains relatively underdeveloped compared to other regions. The industry faces various challenges, including high operating costs, limited infrastructure, and political instability. However, the African aviation market is also experiencing increasing demand for air travel due to rising middle-class incomes, a growing tourism industry, and an expanding economy.  However, the Pacific Island nations face challenges related to limited infrastructure and high operating costs."
+    },
+    "Oceania" : {
+        "NumAirlines" : 20,
+        "Journeys" : "0.5 billion",
+        "growth2030" : "535%",
+        "marketSize" : "20 Billion",
+        "Summary" : "The Oceania aviation market has experienced steady growth in recent years and is expected to continue to expand in the coming decades. The region includes countries such as Australia, New Zealand, and the Pacific Island nations. The growth of the Oceania aviation market has been driven by various factors, including increasing tourism, rising middle-class incomes, and an expanding economy. "
+    }
+}
