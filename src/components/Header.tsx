@@ -9,6 +9,10 @@ const Header = () => {
     navigate('/');
   };
 
+  const handleVarClick = () => {
+    navigate('/var');
+  };
+
   const handleCaseStudiesClick = () => {
     navigate('/casestudy');
   };
@@ -23,6 +27,11 @@ const Header = () => {
             <li>
               <button onClick={handleHomeClick} className="hover:text-gray-300">
                 Home
+              </button>
+            </li>
+            <li>
+              <button onClick={handleVarClick} className="hover:text-gray-300">
+                Var
               </button>
             </li>
             <li>

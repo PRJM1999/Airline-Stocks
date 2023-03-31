@@ -48,7 +48,7 @@ export const CaseStudies = () => {
 
     return (
     <div className="container mx-auto p-4 " style={{minHeight: "100vh"}}>
-      <h1 className="text-3xl font-bold mb-2">Airline Case Studies</h1>
+      <h1 className="text-3xl font-bold mb-2 text-gray-600 ">Airline Case Studies</h1>
       <p className="text-gray-600 mb-4">
         Explore our collection of case studies on various airlines.
       </p>

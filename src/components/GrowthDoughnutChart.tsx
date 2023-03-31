@@ -70,7 +70,7 @@ const GrowthDoughnutChart: React.FC<DoughnutChartProps> = ({ data }) => {
 
 return (
     <div className="bg-white rounded-lg shadow-lg p-4 flex items-center justify-center">
-      <Doughnut data={chartData} options={chartOptions} />
+      <Doughnut data={chartData} options={chartOptions} style={{maxHeight: "100%"}}/>
     </div>
 );
 };

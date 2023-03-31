@@ -33,6 +33,7 @@ class AlphaVantagePricesFetcher(PricesFetcher):
         self.api_key = os.environ["ALPHA_VANTAGE_API_KEY"]
         
     def get_prices(self, symbol: str) -> pd.DataFrame:
+        os.system("sleep 5")
         url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={self.api_key}"
         response = requests.get(url)
         data = json.loads(response.text)
@@ -41,19 +42,6 @@ class AlphaVantagePricesFetcher(PricesFetcher):
         df.index = pd.to_datetime(df.index)
         df = df.astype(float)
         df = df.sort_index()
+        df = df[["5. adjusted close"]]
+        df = df.rename(columns={"5. adjusted close": symbol})
         return df
-
-
-stock_prices_fetcher = QuandlPricesFetcher()
-stock_prices = stock_prices_fetcher.get_prices("FRED/DCOILWTICO")
-print(stock_prices)
-
-
-alpha_vantage_fetcher = AlphaVantagePricesFetcher()
-american_airlines_prices = alpha_vantage_fetcher.get_prices("AAL")
-delta_airlines_prices = alpha_vantage_fetcher.get_prices("DAL")
-print(american_airlines_prices)
-print(delta_airlines_prices)
-
-sp_500_index = alpha_vantage_fetcher.get_prices("SPY")
-print(sp_500_index)
