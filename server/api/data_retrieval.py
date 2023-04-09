@@ -8,17 +8,30 @@ from dotenv import load_dotenv
 
 
 class PricesFetcher(ABC):
+    """
+    Price fetcher abstract class
+    """
+
     @abstractmethod
     def get_prices(self, symbol: str) -> pd.DataFrame:
         pass
 
 class QuandlPricesFetcher:
     def __init__(self):
+        """
+        Initialises Quandl api by
+        getting api key from .env
+        """
         load_dotenv()
         self.api_key = os.environ["QUANDL_API_KEY"]
         quandl.ApiConfig.api_key = self.api_key
         
     def get_prices(self, symbol: str) -> pd.DataFrame:
+        """
+        Fetches Data from quandl api, cleans data
+        taking the adjust close as the value. Returns as 
+        pandas dataframe
+        """
         data = quandl.get(symbol)
         df = pd.DataFrame(data)
         df = df.reset_index()
@@ -29,10 +42,19 @@ class QuandlPricesFetcher:
 
 class AlphaVantagePricesFetcher(PricesFetcher):
     def __init__(self):
+        """
+        Initialises alpha vantage api by 
+        getting api key from .env
+        """
         load_dotenv()
         self.api_key = os.environ["ALPHA_VANTAGE_API_KEY"]
         
     def get_prices(self, symbol: str) -> pd.DataFrame:
+        """
+        Fetches Data from alpha vantage api, cleans data
+        taking the adjust close as the value. Returns as 
+        pandas dataframe
+        """
         os.system("sleep 5")
         url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={self.api_key}"
         response = requests.get(url)

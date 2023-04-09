@@ -17,9 +17,11 @@ import { AirlineCard } from "../components/AirlineCard";
 const Home = () => {
 
   const selectedContinent: string = useSelector((state: any) => state.home.selectedContinent);
+  // @ts-ignore
   const [continentData, setContinentData] = useState(data[selectedContinent]);
 
   useEffect(() => {
+    // @ts-ignore
     setContinentData(data[selectedContinent]);
   }, [selectedContinent]);
 
@@ -38,11 +40,7 @@ const Home = () => {
         >
         Welcome to Airline Stocks
         <div className="h-3"/>
-        {/* <p className="mt-4 text-lg text-gray-600 text-left ml-8">
-          Browse financial data on airlines around the world, investigatge the market size and growth and analyse mergers.
-        </p> */}
         </motion.h1>
-
         <div className="flex flex-col lg:flex-row justify-center items-center">
           <div className="w-full md:w-1/2">
             <Map />
@@ -72,7 +70,7 @@ const Home = () => {
         </Link>
       </div>
       <div id = "STOCK SUMMARY" style={{minHeight: "100vh"}} className="justify-center relative">
-      <Link className="absolute top-0 left-1/2 mt-10" to="CONTINENT SUMMARY" smooth={true} duration={500} offset={-100}>
+      <Link className="absolute top-0 left-1/2 mt-1" to="CONTINENT SUMMARY" smooth={true} duration={500} offset={-100}>
           <FaArrowUp className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
       </Link>
       <motion.h1
@@ -109,11 +107,10 @@ const Home = () => {
         </Link>
      </div>
       <div id = "AIRLINE SUMMARY" style={{minHeight: "100vh"}} className="flex flex-col justify-center relative">
-      <Link className="absolute top-0 left-1/2 mt-10" to="STOCK SUMMARY" smooth={true} duration={500}>
+      <Link className="absolute top-0 left-1/2 mt-1" to="STOCK SUMMARY" smooth={true} duration={500}>
           <FaArrowUp className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
       </Link>
       <motion.h1
-          // will fix ref later
           ref={ref2}
           initial={{ opacity: 0 }}
           animate={{ opacity: inView2 ? 1 : 0 }}

@@ -11,7 +11,10 @@ model_handler.init_app(app)
 # Enable CORS
 CORS(app)
 
-# create test route
+
 @app.route('/')
 def index():
+    """
+    Test route to check server is running.
+    """
     return "Server is running"
