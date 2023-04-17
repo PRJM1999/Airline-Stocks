@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import sampleapi from '../../assets/sampleapi.json'
+import sampleapi from '../../public/assets/sampleapi.json'
 
 
 function Var() {
@@ -9,7 +9,7 @@ function Var() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://127.0.0.1:3000/model')
+      const response = await fetch('http://18.168.204.211:3000/model')
       const data = await response.json()
       setData(data)
     }

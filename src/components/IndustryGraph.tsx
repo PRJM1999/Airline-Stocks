@@ -10,7 +10,7 @@ import {
     Legend,
   } from 'chart.js';
 import annotationPlugin from "chartjs-plugin-annotation";
-import historicdata from '../../assets/historicaltrends.json';
+import historicdata from '../../public/assets/historicaltrends.json';
 
 
 ChartJS.register(

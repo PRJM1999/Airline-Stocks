@@ -1,6 +1,6 @@
 import React from 'react'
-import ryanair_main from '../../assets/images/ryanair_main.jpeg'
-import casestudies from '../../assets/casestudies.json'
+import ryanair_main from '../../public/assets/images/ryanair_main.jpeg'
+import casestudies from '../../public/assets/casestudies.json'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -32,8 +32,6 @@ const Card: React.FC<CardProps> = ({ image, title, onClick }) => {
 export const CaseStudies = () => {
 
     const navigate = useNavigate();
-
-    console.log(casestudies)
 
     const airlines = {
     "Ryanair" : {

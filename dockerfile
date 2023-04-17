@@ -19,6 +19,9 @@ RUN npm run build
 # Use an official Nginx runtime as a parent image
 FROM nginx:1.19.0
 
+# Copt the custom nginx conf file
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Copy the build output from the builder image to the Nginx root directory
 WORKDIR /usr/share/nginx/html
 

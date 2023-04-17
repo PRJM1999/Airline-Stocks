@@ -5,12 +5,12 @@ import NumAirlinesChart from "../components/NumAirChat";
 import GrowthDoughnutChart from "../components/GrowthDoughnutChart";
 import { MarketSize, TotalJourneys } from "../components/TextCharts";
 import { useSelector } from "react-redux";
-import data from '../../assets/continents.json';
+import data from '../../public/assets/continents.json';
 import { useEffect, useState } from "react";
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 import { Link } from 'react-scroll';
 import IndustryGraph from "../components/IndustryGraph";
-import fleetsize from '../../assets/fleetsize.json'
+import fleetsize from '../../public/assets/fleetsize.json'
 import FleetSizeChart from "../components/FleetChart";
 import { AirlineCard } from "../components/AirlineCard";
 
