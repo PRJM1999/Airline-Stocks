@@ -1,7 +1,7 @@
 # Website Project
 
 ## Overview
-This project is a website for analyzing airline stocks. It consists of a frontend and a backend. The frontend is written in TypeScript using React and Redux with Tailwind and is served using Nginx. The backend is written in Python and is served using Gunicorn. Its main function is to produce the vector autoregression model.
+This project is a website for analyzing airline stocks. It can be reached at [airlinestock.co.uk](https://airlinestock.co.uk). It consists of a frontend and a backend. The frontend is written in TypeScript using React and Redux with Tailwind and is served using Nginx. The backend is written in Python and is served using Gunicorn. Its main function is to provide information on airline stocks around the world, provide articles discuss mergers and growth of major airlines, and also produce predictions using a vector autoregression model.
 
 ## Development
 To start the development environment for the frontend, run `npm run dev`. To run tests for the frontend, use `npm run test`.
