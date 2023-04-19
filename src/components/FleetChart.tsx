@@ -64,7 +64,7 @@ const FleetSizeChart = (data: any) => {
         },
       },
     },
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     responsive: true,
   };
 

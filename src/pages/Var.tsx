@@ -1,11 +1,16 @@
 import React, { useState, useEffect} from 'react'
 import sampleapi from '../../public/assets/sampleapi.json'
+import { format, addDays } from 'date-fns'
 
 
 function Var() {
 
 
   const [data, setData] = useState<any>(sampleapi)
+
+  const dates = Array.from({ length: 10 }, (_, i) =>
+  format(addDays(new Date(), i), 'MM/dd/yyyy')
+)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +24,8 @@ function Var() {
     const interval = setInterval(() => {
       fetchData()
     }, 24 * 60 * 60 * 1000) // fetch data every 24 hours
+
+
 
     return () => clearInterval(interval)
   }, [])
@@ -44,6 +51,7 @@ function Var() {
         <table className="table-auto border-collapse border border-gray-400 mx-auto">
           <thead>
             <tr>
+              <th className="border border-gray-400 px-4 py-2 bg-gray-600 text-white">Date</th>
               <th className="border border-gray-400 px-4 py-2 bg-gray-600 text-white">S&P 500 Index</th>
               <th className="border border-gray-400 px-4 py-2 bg-gray-600 text-white">Global Oil Price</th>
               <th className="border border-gray-400 px-4 py-2 bg-gray-600 text-white">American Airlines Stock</th>
@@ -52,6 +60,9 @@ function Var() {
           <tbody>
             {data.forecast.map((row: number[], index: number) => (
               <tr key={index}>
+                <td key={`${index}-date`} className="border border-gray-400 px-4 py-2 text-center">
+                  {dates[index]}
+                </td>
                 {row.map((cell: number, index: number) => (
                   <td key={index} className="border border-gray-400 px-4 py-2 text-center">
                     {cell.toFixed(2)}
@@ -60,6 +71,20 @@ function Var() {
               </tr>
             ))}
           </tbody>
+          {/* <tbody>
+            {data.forecast.map((row: number[], index: number) => (
+              <tr key={index}>
+                <td key={`${index}-date`} className="border border-gray-400 px-4 py-2 text-center">
+                  {dates[index]}
+                </td>
+                {row.map((cell: number, index: number) => (
+                  <td key={`${index}-data`} className="border border-gray-400 px-4 py-2 text-center">
+                    {cell.toFixed(2)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody> */}
         </table>
       )}
     </div>

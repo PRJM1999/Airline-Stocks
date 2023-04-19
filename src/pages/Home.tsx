@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from 'react-intersection-observer';
 import Map from "../components/Map";
 import NumAirlinesChart from "../components/NumAirChat";
@@ -28,10 +28,9 @@ const Home = () => {
   const [ref, inView ] = useInView()
   const [ref2, inView2 ] = useInView()
 
-
   return (
     <div className="bg-gray-100 flex flex-col justify-start ">
-      <div id="CONTINENT SUMMARY" style={{minHeight: `calc(100vh - ${60}px)`}} >
+      <div id="CONTINENT SUMMARY" style={{minHeight: `calc(100vh - ${60}px)`}} className="relative">
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -52,6 +51,7 @@ const Home = () => {
               <GrowthDoughnutChart data={continentData} />
             </div>
         </div>
+        <div className="h-10"/>
         <motion.h1
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -65,7 +65,7 @@ const Home = () => {
           {continentData.Summary}
         </motion.h1>
         <div className="h-10"/>
-        <Link className="absolute bottom-0 left-1/2 mb-5" to="STOCK SUMMARY" smooth={true} duration={500}>
+        <Link className="absolute bottom-0 left-1/2 mb-10" to="STOCK SUMMARY" smooth={true} duration={500}>
           <FaArrowDown className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
         </Link>
       </div>
@@ -74,37 +74,46 @@ const Home = () => {
           <FaArrowUp className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
       </Link>
       <motion.h1
-          ref={ref}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: inView ? 1 : 0 }}
-          transition={{ duration: 2 }}
-          className="text-5xl font-bold text-gray-800 text-left mt-8 ml-8"
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: inView ? 1 : 0 }}
+      transition={{ duration: 2 }}
+      className="text-5xl font-bold text-gray-800 text-left mt-8 ml-8"
+    >
+      Historical Industry Trends
+      <div className="h-3" />
+      <p className="mt-4 text-lg text-gray-600 text-left ml-8">
+        Historic and cyclical trends of the U.S. aviation sector.
+      </p>
+    </motion.h1>
+    <AnimatePresence>
+      {inView && (
+        <motion.div
+          key="graph"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          transition={{ duration: 1 }}
+          style={{ margin: "5%" }}
         >
-        Historical Industry Trends
-        <div className="h-3"/>
-        <p className="mt-4 text-lg text-gray-600 text-left ml-8">
-          Historic and cyclical trends of the U.S. aviation sector.
-        </p>
-        </motion.h1>
-        <div className="m-20">
-        <IndustryGraph />
-        <motion.h1
-          ref={ref}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: inView ? 1 : 0 }}
-          transition={{ duration: 2 }}
-          className="text-5xl font-bold text-gray-800 text-left mt-8 ml-8"
-        >
-        <ul className="list-disc ml-8">
-          <li className="text-gray-800 text-xl"><span className="font-bold">9/11 - </span>Consumer confidence crushed particularly in U.S and Europe.</li>
-          <li className="text-gray-800 text-xl my-5"><span className="font-bold">Great Recession - </span>Airline demand plummets, large scale mergers such as United & Continental take place.</li>
-          <li className="text-gray-800 text-xl"><span className="font-bold">Covid Pandemic - </span>2 years of disruption, unprecended level of aircraft retirement take place across the globe.</li>
-        </ul>
-        </motion.h1>
-        </div>
-      <Link className="absolute bottom-0 left-1/2 mb-10" to="AIRLINE SUMMARY" smooth={true} duration={500}>
-          <FaArrowDown className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
-        </Link>
+          <IndustryGraph />
+          <ul className="list-disc ml-8">
+            <li className="text-gray-800 text-xl">
+              <span className="font-bold">9/11 - </span>Consumer confidence crushed particularly in U.S and Europe.
+            </li>
+            <li className="text-gray-800 text-xl my-5">
+              <span className="font-bold">Great Recession - </span>Airline demand plummets, large scale mergers such as United & Continental take place.
+            </li>
+            <li className="text-gray-800 text-xl">
+              <span className="font-bold">Covid Pandemic - </span>2 years of disruption, unprecedented level of aircraft retirement take place across the globe.
+            </li>
+          </ul>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    <Link className="absolute bottom-0 left-1/2 mb-10" to="AIRLINE SUMMARY" smooth={true} duration={500}>
+      <FaArrowDown className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
+    </Link>
      </div>
       <div id = "AIRLINE SUMMARY" style={{minHeight: "100vh"}} className="flex flex-col justify-center relative">
       <Link className="absolute top-0 left-1/2 mt-1" to="STOCK SUMMARY" smooth={true} duration={500}>
