@@ -19,5 +19,8 @@ A main Docker Compose file runs them. To start the entire application using Dock
 ## SSL Certification
 SSL certification has not been added at this point in order to maximize development productivity. However, it will be added in the future when the website reaches a certain quality.
 
+## API Bootleneck
+The free version of the Alpha Vantage Api only allows a certain number of api requests in a time period. Due to this there may be console log error when trying to fetch VAR data from the backend.
+
 ## Future Development
 The app currently uses React and client-side rendering. Future development may address any problems this causes by implementing server-side rendering or using a static site generator.

@@ -1,153 +1,210 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 import Map from "../components/Map";
 import NumAirlinesChart from "../components/NumAirChat";
 import GrowthDoughnutChart from "../components/GrowthDoughnutChart";
 import { MarketSize, TotalJourneys } from "../components/TextCharts";
 import { useSelector } from "react-redux";
-import data from '../../public/assets/continents.json';
+import data from "../../public/assets/continents.json";
 import { useEffect, useState } from "react";
-import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
-import { Link } from 'react-scroll';
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { Link } from "react-scroll";
 import IndustryGraph from "../components/IndustryGraph";
-import fleetsize from '../../public/assets/fleetsize.json'
+import fleetsize from "../../public/assets/fleetsize.json";
 import FleetSizeChart from "../components/FleetChart";
 import { AirlineCard } from "../components/AirlineCard";
 
 const Home = () => {
-
-  const selectedContinent: string = useSelector((state: any) => state.home.selectedContinent);
+  const selectedContinent: string = useSelector(
+    (state: any) => state.home.selectedContinent
+  );
   // @ts-ignore
   const [continentData, setContinentData] = useState(data[selectedContinent]);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     // @ts-ignore
     setContinentData(data[selectedContinent]);
   }, [selectedContinent]);
 
-  const [ref, inView ] = useInView()
-  const [ref2, inView2 ] = useInView()
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-100px 0px",
+  });
+
+  const onAnimationComplete = () => {
+    setHasAnimated(true);
+  };
+
+  const [ref2, inView2] = useInView();
 
   return (
     <div className="bg-gray-100 flex flex-col justify-start ">
-      <div id="CONTINENT SUMMARY" style={{minHeight: `calc(100vh - ${60}px)`}} className="relative">
+      <div
+        id="CONTINENT SUMMARY"
+        style={{ minHeight: `calc(100vh - ${60}px)` }}
+        className="relative"
+      >
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
           className="text-5xl font-bold text-gray-800 text-left mt-8 ml-8"
         >
-        Welcome to Airline Stocks
-        <div className="h-3"/>
+          Welcome to Airline Stocks
+          <div className="h-3" />
         </motion.h1>
         <div className="flex flex-col lg:flex-row justify-center items-center">
           <div className="w-full md:w-1/2">
             <Map />
           </div>
-            <div className="w-full md:w-1/2 grid grid-cols-2 md:grid-cols-2 gap-4">
-              <NumAirlinesChart data={continentData} />
-              <MarketSize data={continentData} />
-              <TotalJourneys data={continentData} />
-              <GrowthDoughnutChart data={continentData} />
-            </div>
+          <div className="w-full md:w-1/2 grid grid-cols-2 md:grid-cols-2 gap-4">
+            <NumAirlinesChart data={continentData} />
+            <MarketSize data={continentData} />
+            <TotalJourneys data={continentData} />
+            <GrowthDoughnutChart data={continentData} />
+          </div>
         </div>
-        <div className="h-10"/>
+        <div className="h-10" />
         <motion.h1
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-        className="text-lg text-gray-600 text-left ml-8 mr-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+          className="text-lg text-gray-600 text-left ml-8 mr-8"
         >
           <h2 className="text-3xl font-bold text-gray-800">
-          {selectedContinent}
+            {selectedContinent}
           </h2>
-          <div className="h-3"/>
+          <div className="h-3" />
           {continentData.Summary}
         </motion.h1>
-        <div className="h-10"/>
-        <Link className="absolute bottom-0 left-1/2 mb-10" to="STOCK SUMMARY" smooth={true} duration={500}>
+        <div className="h-20" />
+        <Link
+          className="absolute bottom-0 left-1/2 mb-10"
+          to="STOCK SUMMARY"
+          smooth={true}
+          duration={500}
+        >
           <FaArrowDown className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
         </Link>
       </div>
-      <div id = "STOCK SUMMARY" style={{minHeight: "100vh"}} className="justify-center relative">
-      <Link className="absolute top-0 left-1/2 mt-1" to="CONTINENT SUMMARY" smooth={true} duration={500} offset={-100}>
-          <FaArrowUp className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
-      </Link>
-      <motion.h1
-      ref={ref}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: inView ? 1 : 0 }}
-      transition={{ duration: 2 }}
-      className="text-5xl font-bold text-gray-800 text-left mt-8 ml-8"
-    >
-      Historical Industry Trends
-      <div className="h-3" />
-      <p className="mt-4 text-lg text-gray-600 text-left ml-8">
-        Historic and cyclical trends of the U.S. aviation sector.
-      </p>
-    </motion.h1>
-    <AnimatePresence>
-      {inView && (
-        <motion.div
-          key="graph"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
-          transition={{ duration: 1 }}
-          style={{ margin: "5%" }}
+      <div
+        id="STOCK SUMMARY"
+        style={{ minHeight: "100vh" }}
+        className="justify-center relative"
+      >
+        <Link
+          className="absolute top-0 left-1/2 mt-1"
+          to="CONTINENT SUMMARY"
+          smooth={true}
+          duration={500}
+          offset={-100}
         >
-          <IndustryGraph />
-          <ul className="list-disc ml-8">
-            <li className="text-gray-800 text-xl">
-              <span className="font-bold">9/11 - </span>Consumer confidence crushed particularly in U.S and Europe.
-            </li>
-            <li className="text-gray-800 text-xl my-5">
-              <span className="font-bold">Great Recession - </span>Airline demand plummets, large scale mergers such as United & Continental take place.
-            </li>
-            <li className="text-gray-800 text-xl">
-              <span className="font-bold">Covid Pandemic - </span>2 years of disruption, unprecedented level of aircraft retirement take place across the globe.
-            </li>
-          </ul>
-        </motion.div>
-      )}
-    </AnimatePresence>
-    <Link className="absolute bottom-0 left-1/2 mb-10" to="AIRLINE SUMMARY" smooth={true} duration={500}>
-      <FaArrowDown className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
-    </Link>
-     </div>
-      <div id = "AIRLINE SUMMARY" style={{minHeight: "100vh"}} className="flex flex-col justify-center relative">
-      <Link className="absolute top-0 left-1/2 mt-1" to="STOCK SUMMARY" smooth={true} duration={500}>
           <FaArrowUp className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
-      </Link>
-      <motion.h1
+        </Link>
+        <motion.h1
+          ref={ref}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: inView ? 1 : 0 }}
+          transition={{ duration: 2 }}
+          className="text-5xl font-bold text-gray-800 text-left mt-8 ml-8"
+        >
+          Historical Industry Trends
+          <div className="h-3" />
+          <p className="mt-4 text-lg text-gray-600 text-left ml-8">
+            Historic and cyclical trends of the U.S. aviation sector.
+          </p>
+        </motion.h1>
+        <AnimatePresence>
+          {inView && (
+            <motion.div
+              key="graph"
+              ref={ref}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 1, y: -50 }}
+              transition={{ duration: 1 }}
+              style={{ margin: "5%" }}
+              onAnimationComplete={onAnimationComplete}
+            >
+              {hasAnimated && (
+                <>
+                  <IndustryGraph />
+                  <ul className="list-disc ml-8">
+                    <li className="text-gray-800 text-xl">
+                      <span className="font-bold">9/11 - </span>Consumer
+                      confidence crushed particularly in U.S and Europe.
+                    </li>
+                    <li className="text-gray-800 text-xl my-5">
+                      <span className="font-bold">Great Recession - </span>
+                      Airline demand plummets, large scale mergers such as
+                      United & Continental take place.
+                    </li>
+                    <li className="text-gray-800 text-xl">
+                      <span className="font-bold">Covid Pandemic - </span>2
+                      years of disruption, unprecedented level of aircraft
+                      retirement take place across the globe.
+                    </li>
+                  </ul>
+                </>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <Link
+          className="absolute bottom-0 left-1/2 mb-10"
+          to="AIRLINE SUMMARY"
+          smooth={true}
+          duration={500}
+        >
+          <FaArrowDown className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
+        </Link>
+      </div>
+      <div
+        id="AIRLINE SUMMARY"
+        style={{ minHeight: "100vh" }}
+        className="flex flex-col justify-center relative"
+      >
+        <Link
+          className="absolute top-0 left-1/2 mt-1"
+          to="STOCK SUMMARY"
+          smooth={true}
+          duration={500}
+        >
+          <FaArrowUp className="text-gray-800 text-4xl m-auto cursor-pointer hover:text-gray-600" />
+        </Link>
+        <motion.h1
           ref={ref2}
           initial={{ opacity: 0 }}
           animate={{ opacity: inView2 ? 1 : 0 }}
           transition={{ duration: 2 }}
           className="text-5xl font-bold text-gray-800 text-left mt-8 ml-8"
         >
-        Airline Insights
-        <div className="h-3"/>
-        <p className="mt-4 text-lg text-gray-600 text-left">
-          Historic and cyclical trends of the U.S. aviation sector.
-        </p>
+          Airline Insights
+          <div className="h-3" />
+          <p className="mt-4 text-lg text-gray-600 text-left">
+            Historic and cyclical trends of the U.S. aviation sector.
+          </p>
         </motion.h1>
-        <div className="h-10"/>
+        <div className="h-10" />
         <div className="flex flex-col lg:flex-row justify-center items-center">
-          <FleetSizeChart data={fleetsize}/>
+          <FleetSizeChart data={fleetsize} />
         </div>
-        <div className="h-20"/>
+        <div className="h-20" />
         <div className="flex flex-col lg:flex-row justify-center items-center">
-          <div className="container m-5 justify-center items-center" style={{maxWidth: "90vw"}}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {Object.values(fleetsize).map((airline) => (
-                  <AirlineCard key={airline.code} airline={airline} />
-                ))}
-              </div>
+          <div
+            className="container m-5 justify-center items-center"
+            style={{ maxWidth: "90vw" }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {Object.values(fleetsize).map((airline) => (
+                <AirlineCard key={airline.code} airline={airline} />
+              ))}
+            </div>
           </div>
         </div>
-        <div className="h-20"/>
-     </div>
+        <div className="h-20" />
+      </div>
     </div>
   );
 };
