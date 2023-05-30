@@ -25,14 +25,14 @@
         "Journeys" : "10 billion",
         "growth2030" : "50%",
         "marketSize" : "300 Billion",
-        "Summary" : "The Asian aviation market has been experiencing significant growth over the past few decades and is expected to continue to expand in the coming years. The region has seen a surge in passenger traffic, driven by increasing middle-class incomes, urbanization, and a growing tourism industry. The rise of low-cost carriers and the expansion of airline networks have also contributed to the market's growth. According to industry projections, Asia is expected to become the largest aviation market in the world by 2024, surpassing North America."
+        "Summary" : "The Asian aviation market has been experiencing significant growth over the past few decades and is expected to continue to expand in the coming years. The region has seen a surge in passenger traffic, driven by increasing middle-class incomes, urbanization, and a growing tourism industry. The rise of low-cost carriers and the expansion of airline networks have also contributed to the market's growth."
     },
     "Africa" : {
         "NumAirlines" : 50,
         "Journeys" : "1 billion",
         "growth2030" : "80%",
         "marketSize" : "50 Billion",
-        "Summary" : "The African aviation market has significant growth potential, but it remains relatively underdeveloped compared to other regions. The industry faces various challenges, including high operating costs, limited infrastructure, and political instability. However, the African aviation market is also experiencing increasing demand for air travel due to rising middle-class incomes, a growing tourism industry, and an expanding economy.  However, the Pacific Island nations face challenges related to limited infrastructure and high operating costs."
+        "Summary" : "The African aviation market has significant growth potential, but it remains relatively underdeveloped compared to other regions. The industry faces various challenges, including high operating costs, limited infrastructure, and political instability. However, the African aviation market is also experiencing increasing demand for air travel due to rising middle-class incomes, a growing tourism industry, and an expanding economy."
     },
     "Oceania" : {
         "NumAirlines" : 20,

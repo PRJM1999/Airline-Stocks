@@ -3,7 +3,10 @@ import sampleapi from "../../public/assets/sampleapi.json";
 import { format, addDays } from "date-fns";
 
 function Var() {
-  const [data, setData] = useState<any>(sampleapi);
+  const [data, setData] = useState<any>({
+    forecast: [],
+  });
+  const [time, setTime] = useState<number>(0);
 
   const dates = Array.from({ length: 10 }, (_, i) =>
     format(addDays(new Date(), i), "MM/dd")
@@ -11,21 +14,27 @@ function Var() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://18.168.204.211:3000/model");
+      const response = await fetch("http://127.0.0.1:3000/initial_data");
+      // const response = await fetch("http://18.168.204.211:3000/initial_data");
       const data = await response.json();
-      if (data.message === 'Internal Server Error') {
-        console.warn('Internal Server Error - Api limit reached')
-      } else {setData(data);}
+      setData(data);
+      setTime(data.date);
     };
 
     fetchData();
-
-    const interval = setInterval(() => {
-      fetchData();
-    }, 5 * 60 * 1000); // fetch data every 5 minutes
-
-    return () => clearInterval(interval);
   }, []);
+
+  const fetchData = async () => {
+    const response = await fetch("http://127.0.0.1:3000/model");
+    // const response = await fetch("http://18.168.204.211:3000/model");
+    const data = await response.json();
+    if (data.message === "Internal Server Error") {
+      console.warn("Internal Server Error - Api limit reached");
+    } else {
+      setData(data);
+      setTime(data.date);
+    }
+  };
 
   return (
     <div style={{ minHeight: `calc(100vh - ${60}px)` }} className="p-10">
@@ -89,6 +98,20 @@ function Var() {
           </tbody>
         </table>
       )}
+      <div className="mt-10" />
+      Due to a limit on api calls I am not able to provide a live update,
+      however if you click the button below it will fetch fresh data:
+      <div className="mt-5 flex justify-center">
+        <button
+          onClick={() => {
+            fetchData();
+          }}
+          className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Fetch Data
+        </button>        
+      </div>
+      <p className="text-gray-600 mt-10">Last Updated: {time}</p>
     </div>
   );
 }

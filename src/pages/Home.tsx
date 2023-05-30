@@ -49,7 +49,7 @@ const Home = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
-          className="text-5xl font-bold text-gray-800 text-left mt-8 ml-8"
+          className="text-5xl font-bold text-gray-800 text-left mt-2 ml-8"
         >
           Welcome to Airline Stocks
           <div className="h-3" />

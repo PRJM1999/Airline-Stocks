@@ -3,6 +3,8 @@ from flask import Flask, request, jsonify, make_response, send_from_directory, s
 from api.data_retrieval import AlphaVantagePricesFetcher
 from api.var_model import VARModel
 import pandas as pd
+from api.file_saver import ForecastFileSaver
+from datetime import datetime
 
 model_handler = Api()
 
@@ -10,7 +12,8 @@ class ModelForcast(Resource):
 
     def get(self):
         """
-        Return the forecast for a given model
+        Run the analysis, saves the forcast to a json file, 
+        cleans the data, adds the date and returns the data.
         """
         alpha_vantage_fetcher = AlphaVantagePricesFetcher()
 
@@ -24,8 +27,12 @@ class ModelForcast(Resource):
         var_model.fit(preprocessed_data)
 
         forecast = var_model.forecast(10, preprocessed_data)
+        ForecastFileSaver().save_forecast_to_json(forecast)
 
-        return jsonify({'forecast': forecast.tolist()})
+        forecast = {'forecast': forecast.tolist()}
+        forecast['date'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        return jsonify(forecast)
 
 
 model_handler.add_resource(ModelForcast, "/model")
