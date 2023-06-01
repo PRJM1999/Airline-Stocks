@@ -64,13 +64,13 @@ function Var() {
                 Date
               </th>
               <th className="border border-gray-400 px-4 py-2 bg-gray-600 text-white">
+                American Airlines Stock
+              </th>
+              <th className="border border-gray-400 px-4 py-2 bg-gray-600 text-white">
                 S&P 500 Index
               </th>
               <th className="border border-gray-400 px-4 py-2 bg-gray-600 text-white">
                 Global Oil Price
-              </th>
-              <th className="border border-gray-400 px-4 py-2 bg-gray-600 text-white">
-                American Airlines Stock
               </th>
             </tr>
           </thead>
