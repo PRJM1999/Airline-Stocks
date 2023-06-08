@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/Users/patrickmontgomery/Documents/Main Code/Airline-Stocks/build",
+  "command": "/usr/bin/clang++ -DCPPREST_FORCE_HTTP_CLIENT_ASIO -DCPPREST_FORCE_HTTP_LISTENER_ASIO -DCPPREST_NO_SSL_LEAK_SUPPRESS -isystem /opt/homebrew/include -isystem /opt/homebrew/opt/openssl@3/include -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -o CMakeFiles/AirlineStocksServer.dir/src/black_scholes.cpp.o -c \"/Users/patrickmontgomery/Documents/Main Code/Airline-Stocks/cpp-server/src/black_scholes.cpp\"",
+  "file": "/Users/patrickmontgomery/Documents/Main Code/Airline-Stocks/cpp-server/src/black_scholes.cpp",
+  "output": "CMakeFiles/AirlineStocksServer.dir/src/black_scholes.cpp.o"
+},
+{
+  "directory": "/Users/patrickmontgomery/Documents/Main Code/Airline-Stocks/build",
+  "command": "/usr/bin/clang++ -DCPPREST_FORCE_HTTP_CLIENT_ASIO -DCPPREST_FORCE_HTTP_LISTENER_ASIO -DCPPREST_NO_SSL_LEAK_SUPPRESS -isystem /opt/homebrew/include -isystem /opt/homebrew/opt/openssl@3/include -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -o CMakeFiles/AirlineStocksServer.dir/src/monte_carlo.cpp.o -c \"/Users/patrickmontgomery/Documents/Main Code/Airline-Stocks/cpp-server/src/monte_carlo.cpp\"",
+  "file": "/Users/patrickmontgomery/Documents/Main Code/Airline-Stocks/cpp-server/src/monte_carlo.cpp",
+  "output": "CMakeFiles/AirlineStocksServer.dir/src/monte_carlo.cpp.o"
+}
+]
