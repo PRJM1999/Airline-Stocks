@@ -19,6 +19,10 @@ const Header = () => {
     navigate('/casestudy');
   };
 
+  const handleOptionsClick = () => {
+    navigate('/options');
+  };
+
   const handleResize = () => {
     setIsMobileScreen(window.innerWidth < 768);
   };
@@ -52,6 +56,11 @@ const Header = () => {
                 </button>
               </li>
               <li className="md:inline-block">
+                <button onClick={handleOptionsClick} className="hover:text-gray-300 block px-4 py-2 text-sm">
+                  Options
+                </button>
+              </li>
+              <li className="md:inline-block">
                 <button onClick={handleCaseStudiesClick} className="hover:text-gray-300 block px-4 py-2 text-sm" data-test>
                   Case Studies
                 </button>
@@ -74,6 +83,11 @@ const Header = () => {
                 <li>
                   <button onClick={handleVarClick} className="hover:text-gray-300">
                     Var
+                  </button>
+                </li>
+                <li>
+                  <button onClick={handleOptionsClick} className="hover:text-gray-300">
+                    Options
                   </button>
                 </li>
                 <li>
