@@ -20,6 +20,7 @@ set(SOURCE_DIR src)
 set(ALL_FILES
     ${SOURCE_DIR}/black_scholes.cpp
     ${SOURCE_DIR}/monte_carlo.cpp
+    ${SOURCE_DIR}/main.cpp
 )
 
 

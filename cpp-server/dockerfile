@@ -1,0 +1,32 @@
+# Use a base image that supports C++
+FROM ubuntu:latest
+
+# Install required packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    libcpprest-dev \
+    libssl-dev
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the CMakeLists.txt file
+COPY CMakeLists.txt .
+
+# Copy the source code and header files
+COPY src/ src/
+COPY include/ include/
+
+# Build the project
+RUN mkdir build && \
+    cd build && \
+    cmake .. && \
+    make
+
+# Expose the port that your server listens on (if applicable)
+EXPOSE 2000
+
+# Set the entry point to run your server
+CMD ["./build/AirlineStocksServer"]

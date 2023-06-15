@@ -11,16 +11,47 @@ const Options = (props: Props) => {
     setSelectedMethod(method);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const stockPrice = (e.target as any).stockPrice.value;
-    const strikePrice = (e.target as any).strikePrice.value;
-    const riskFreeRate = (e.target as any).riskFreeRate.value;
-    const volatility = (e.target as any).volatility.value;
-    const timeToMaturity = (e.target as any).timeToMaturity.value;
-    const numberOfSimulations = (e.target as any).numberOfSimulations.value;
+  const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const stockPrice: string = (document.querySelector('#stockPrice') as HTMLInputElement).value;
+    const strikePrice: string = (document.querySelector('#strikePrice') as HTMLInputElement).value;
+    const riskFreeRate: string = (document.querySelector('#riskFreeRate') as HTMLInputElement).value;
+    const volatility: string = (document.querySelector('#volatility') as HTMLInputElement).value;
+    const timeToMaturity: string = (document.querySelector('#daysToMaturity') as HTMLInputElement).value;
+    const numberOfSimulations: string = "10000";
 
     e.preventDefault();
-    console.log("submit");
+    
+    const endpoint =
+      selectedMethod === "blackScholes" ? "/black_scholes" : "/monte_carlo";
+    
+    const data = {
+      stockPrice: parseFloat(stockPrice),
+      strikePrice: parseFloat(strikePrice),
+      interestRate: parseFloat(riskFreeRate),
+      volatility: parseFloat(volatility),
+      timeToMaturity: parseFloat(timeToMaturity),
+      numSimulations: parseInt(numberOfSimulations)
+    };
+        
+    try {
+      fetch(`http://localhost:2000${endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          // Handle the result
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -132,7 +163,7 @@ const Options = (props: Props) => {
       <div className="flex justify-center items-center mb-4">
         <button
           className="mr-4 py-2 px-4 rounded-lg bg-gray-800 text-white"
-          //   onClick={() => handleMethodChange("blackScholes")}
+          onClick={(e) => onSubmit(e)}
         >
           Calculate
         </button>
