@@ -24,3 +24,29 @@ The free version of the Alpha Vantage Api only allows a certain number of api re
 
 ## Future Development
 The app currently uses React and client-side rendering. Future development may address any problems this causes by implementing server-side rendering or using a static site generator.
+
+## CI/CD with GitHub Actions
+
+### Continuous Integration:
+
+- **Frontend (React App):**
+   - Build a Docker image for testing.
+   - Execute React app tests using `npm run test`.
+
+- **Backend (Python Server):**
+   - Build a Docker image for backend testing.
+   - Execute Python server tests using `pytest`.
+
+- **Cpp-Server:**
+   - Build a Docker image.
+
+### Continuous Deployment:
+
+- **Docker Images:**
+   - Build and push production-ready Docker images for frontend and backend to Docker Hub.
+
+- **Deployment to EC2:**
+   - Pull the latest Docker images.
+   - Deploy on an EC2 instance using Docker Compose.
+
+Note: For more details on the CI/CD process, refer to the GitHub Actions workflow in the repository.
