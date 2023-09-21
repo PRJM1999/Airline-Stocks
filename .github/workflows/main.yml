@@ -1,0 +1,23 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main # Assuming you want to deploy on pushes to the main branch
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build Frontend React App Test Image
+      run: docker build --target tester --platform linux/amd64 -t pmontgomery27/docker-react-i:test -f Dockerfile .
+    
+    - name: Run Frontend React App Tests
+      run: docker run pmontgomery27/docker-react-i:test npm run test
+
+
+        
