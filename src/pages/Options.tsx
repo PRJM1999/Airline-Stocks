@@ -7,46 +7,59 @@ const Options = (props: Props) => {
     "blackScholes" | "monteCarlo"
   >("blackScholes");
 
+  const [optionPrice, setOptionPrice] = useState<number>(0);
+
   const handleMethodChange = (method: "blackScholes" | "monteCarlo") => {
     setSelectedMethod(method);
   };
 
   const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const stockPrice: string = (document.querySelector('#stockPrice') as HTMLInputElement).value;
-    const strikePrice: string = (document.querySelector('#strikePrice') as HTMLInputElement).value;
-    const riskFreeRate: string = (document.querySelector('#riskFreeRate') as HTMLInputElement).value;
-    const volatility: string = (document.querySelector('#volatility') as HTMLInputElement).value;
-    const timeToMaturity: string = (document.querySelector('#daysToMaturity') as HTMLInputElement).value;
+    const stockPrice: string = (
+      document.querySelector("#stockPrice") as HTMLInputElement
+    ).value;
+    const strikePrice: string = (
+      document.querySelector("#strikePrice") as HTMLInputElement
+    ).value;
+    const riskFreeRate: string = (
+      document.querySelector("#riskFreeRate") as HTMLInputElement
+    ).value;
+    const volatility: string = (
+      document.querySelector("#volatility") as HTMLInputElement
+    ).value;
+    const timeToMaturity: string = (
+      document.querySelector("#daysToMaturity") as HTMLInputElement
+    ).value;
     const numberOfSimulations: string = "10000";
 
     e.preventDefault();
-    
+
     const endpoint =
       selectedMethod === "blackScholes" ? "/black_scholes" : "/monte_carlo";
-    
+
     const data = {
       stockPrice: parseFloat(stockPrice),
       strikePrice: parseFloat(strikePrice),
       interestRate: parseFloat(riskFreeRate),
       volatility: parseFloat(volatility),
       timeToMaturity: parseFloat(timeToMaturity),
-      numSimulations: parseInt(numberOfSimulations)
+      numSimulations: parseInt(numberOfSimulations),
     };
-        
+
     try {
-      fetch(`http://localhost:2000${endpoint}`, {
+      fetch(`http://18.168.204.211:2000${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       })
-        .then(response => response.json())
-        .then(result => {
+        .then((response) => response.json())
+        .then((result) => {
           console.log(result);
-          // Handle the result
+          // Set Option Price as a number and round to 2 decimal places
+          setOptionPrice(parseFloat(result.optionPrice.toFixed(2)));
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     } catch (error) {
@@ -159,7 +172,6 @@ const Options = (props: Props) => {
           Monte Carlo
         </button>
       </div>
-
       <div className="flex justify-center items-center mb-4">
         <button
           className="mr-4 py-2 px-4 rounded-lg bg-gray-800 text-white"
@@ -168,10 +180,14 @@ const Options = (props: Props) => {
           Calculate
         </button>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 m-10">
-        {/* Other content */}
-      </div>
+      <div className="h-5"/>
+      {optionPrice !== 0 && (
+        <div className="flex items-center">
+          <h1 className="text-2xl font-bold mb-2 text-gray-600">
+            Call Price: {optionPrice}
+          </h1>
+        </div>
+      )}
     </div>
   );
 };

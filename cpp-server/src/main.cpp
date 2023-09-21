@@ -135,11 +135,11 @@ void handleBlackScholes(const http_request &request)
 int main()
 {
     // Create listener for monte_carlo endpoint
-    utility::string_t monte_carlo_address = U("http://localhost:2000/monte_carlo");
+    utility::string_t monte_carlo_address = U("http://0.0.0.0:2000/monte_carlo");
     http_listener listener1(monte_carlo_address);
 
     // Create listener for black_scholes endpoint
-    utility::string_t black_scholes_address = U("http://localhost:2000/black_scholes");
+    utility::string_t black_scholes_address = U("http://0.0.0.0:2000/black_scholes");
     http_listener listener2(black_scholes_address);
 
     listener1.support(methods::POST, handleMonteCarloCallOption);
