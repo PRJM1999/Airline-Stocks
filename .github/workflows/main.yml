@@ -19,5 +19,13 @@ jobs:
     - name: Run Frontend React App Tests
       run: docker run pmontgomery27/docker-react-i:test npm run test
 
+    # Build Python Server Test Image
+    - name: Build Python Server Test Image
+      run: docker build --target tester --platform linux/amd64 -t pmontgomery27/docker-python-server:test -f server/Dockerfile server
+
+    # Run Python Server Tests
+    - name: Run Python Server Tests
+      run: docker run pmontgomery27/docker-python-server:test pytest
+
 
         
