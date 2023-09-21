@@ -65,7 +65,6 @@ const Home = () => {
             <GrowthDoughnutChart data={continentData} />
           </div>
         </div>
-        <div className="h-10" />
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
