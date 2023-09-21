@@ -10,3 +10,4 @@ Quandl
 python-dotenv
 Flask-RESTful
 statsmodels
+pytest
