@@ -42,3 +42,29 @@ jobs:
       run: |
        docker build --target production-ready --platform linux/amd64 -t pmontgomery27/python-backend-docker:latest -f server/Dockerfile server
        docker push pmontgomery27/python-backend-docker:latest
+
+    # Build and push cpp-server
+    - name: Build cpp-server Image
+      run: docker build --platform linux/amd64 -t pmontgomery27/cpp-server:latest -f cpp-server/Dockerfile cpp-server
+
+    - name: Push cpp-server Image
+      run: docker push pmontgomery27/cpp-server:latest
+
+    # Deploy to EC2
+    - name: Deploy to EC2
+      env:
+        PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        HOST: ec2-18-168-204-211.eu-west-2.compute.amazonaws.com
+        USER: ubuntu
+      run: |
+        # Decode the SSH key
+        echo "$PRIVATE_KEY" | base64 -d > private_key.pem
+        chmod 600 private_key.pem
+
+        # SSH and deploy
+        ssh -o StrictHostKeyChecking=no -i private_key.pem $USER@$HOST << 'ENDSSH'
+          cd /path/to/your/docker-compose/directory
+          docker-compose pull
+          docker-compose down
+          docker-compose up -d
+        ENDSSH
