@@ -52,11 +52,11 @@ class AlphaVantagePricesFetcher(PricesFetcher):
     def get_prices(self, symbol: str) -> pd.DataFrame:
         """
         Fetches Data from alpha vantage api, cleans data
-        taking the adjust close as the value. Returns as 
+        taking the close as the value. Returns as 
         pandas dataframe
         """
         os.system("sleep 5")
-        url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={self.api_key}"
+        url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={self.api_key}"
         response = requests.get(url)
         data = json.loads(response.text)
         daily_data = data["Time Series (Daily)"]
@@ -64,6 +64,6 @@ class AlphaVantagePricesFetcher(PricesFetcher):
         df.index = pd.to_datetime(df.index)
         df = df.astype(float)
         df = df.sort_index()
-        df = df[["5. adjusted close"]]
-        df = df.rename(columns={"5. adjusted close": symbol})
+        df = df[["4. close"]]  # Change this line to use the "close" column
+        df = df.rename(columns={"4. close": symbol})
         return df

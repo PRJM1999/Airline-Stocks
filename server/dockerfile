@@ -1,16 +1,18 @@
-# Use an official Python runtime as a parent image
-FROM python:3.11.2-slim-buster
+# Testing stage
+FROM python:3.11.2-slim-buster as tester
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+# No CMD here since we'll override it when we run the container for tests
 
-# Set the working directory to /app
+# Production stage
+FROM python:3.11.2-slim-buster
 WORKDIR /app
 
-# Copy the rest of the application code to the working directory
-COPY . .
+# Copy the application code from the tester stage
+COPY --from=tester /app /app
 
-# Install dependencies
-RUN pip install -r requirements.txt
-
-# Install gunicorn
+# Install gunicorn for production (you could also consider moving this to requirements.txt)
 RUN pip install gunicorn
 
 # Expose the port your application runs on
