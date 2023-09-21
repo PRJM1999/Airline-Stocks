@@ -42,3 +42,10 @@ jobs:
       run: |
        docker build --target production-ready --platform linux/amd64 -t pmontgomery27/python-backend-docker:latest -f server/Dockerfile server
        docker push pmontgomery27/python-backend-docker:latest
+
+    # Build and push cpp-server
+    - name: Build cpp-server Image
+      run: docker build --platform linux/amd64 -t pmontgomery27/cpp-server:latest -f cpp-server/Dockerfile cpp-server
+
+    - name: Push cpp-server Image
+      run: docker push pmontgomery27/cpp-server:latest
