@@ -1,18 +1,23 @@
 # Testing stage
 FROM python:3.11.2-slim-buster as tester
 WORKDIR /app
-COPY . .
+# Copy just what you need to install dependencies, then the rest of the app.
+COPY requirements.txt .
 RUN pip install -r requirements.txt
+COPY . .
 # No CMD here since we'll override it when we run the container for tests
 
 # Production stage
 FROM python:3.11.2-slim-buster
 WORKDIR /app
 
-# Copy the application code from the tester stage
+# Copy the application code from the tester stage excluding test files
+# Note: The below command assumes your tests reside in a directory named 'tests'
+# If they're scattered files, you'd need a different approach.
 COPY --from=tester /app /app
+RUN rm -rf /app/tests
 
-# Install gunicorn for production (you could also consider moving this to requirements.txt)
+# Install gunicorn for production
 RUN pip install gunicorn
 
 # Expose the port your application runs on

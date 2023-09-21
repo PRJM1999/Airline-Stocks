@@ -1,8 +1,9 @@
 # Builder stage
 FROM node:19-alpine as builder
 WORKDIR /app
-COPY package.json .
+COPY package*.json ./
 RUN npm install
+# Exclude test files/directories when copying if needed
 COPY . .
 RUN npm run build
 
@@ -12,12 +13,12 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-# No CMD here since we'll override it when we run the container
+# No CMD here since we'll override it when we run the container for tests
 
-# Production stage
+# Production stage using nginx
 FROM nginx:1.19.0
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /usr/share/nginx/html
-RUN rm -rf ./*
-COPY --from=builder /app/dist .
+COPY --from=builder /app/build .
+EXPOSE 80
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
