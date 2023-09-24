@@ -78,11 +78,11 @@ jobs:
           docker run --rm \
           -v "/etc/letsencrypt:/etc/letsencrypt" \
           -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
-          -v "/home/ubuntu/letsencrypt:/data/letsencrypt" \
+          -v "/certbot-webroot:/var/www/certbot" \
           -v "/var/log/letsencrypt:/var/log/letsencrypt" \
           certbot/certbot \
           certonly --webroot \
           --email up916639@myport.ac.uk --agree-tos --no-eff-email \
-          --webroot-path=/data/letsencrypt \
+          --webroot-path=/var/www/certbot \
           -d airlinestock.co.uk
         ENDSSH

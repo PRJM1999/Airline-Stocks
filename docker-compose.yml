@@ -15,7 +15,7 @@ services:
     container_name: docker-react-c
     image: pmontgomery27/docker-react-i
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
       - WATCHPACK_POLLING=true
     volumes:
