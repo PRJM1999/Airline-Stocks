@@ -26,10 +26,10 @@ jobs:
     - name: Run Frontend React App Tests
       run: docker run pmontgomery27/docker-react-i:test npm run test
 
-    # - name: Build and Push Frontend React App Production Image
-    #   run: |
-    #    docker build --target production-ready --platform linux/amd64 -t pmontgomery27/docker-react-i:latest -f Dockerfile .
-    #    docker push pmontgomery27/docker-react-i:latest
+    - name: Build and Push Frontend React App Production Image
+      run: |
+       docker build --target production-ready --platform linux/amd64 -t pmontgomery27/docker-react-i:latest -f Dockerfile .
+       docker push pmontgomery27/docker-react-i:latest
 
     # # Build and test Python server
     # - name: Build Python Server Test Image
