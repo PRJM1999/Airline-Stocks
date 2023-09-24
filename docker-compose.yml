@@ -13,6 +13,8 @@ services:
     environment:
       - WATCHPACK_POLLING=true
     volumes:
+      - ./certs:/etc/letsencrypt
+      - ./certbot-webroot:/var/www/certbot
       - /app/node_modules
       - .:/app
   cpp-server:
