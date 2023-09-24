@@ -61,9 +61,25 @@ jobs:
         echo "$PRIVATE_KEY" | base64 -d > private_key.pem
         chmod 600 private_key.pem
 
+        # Copy docker-compose.yml to EC2 instance
+        scp -o StrictHostKeyChecking=no -i private_key.pem docker-compose.yml $USER@$HOST:~/docker-compose.yml
+
         # SSH and deploy
         ssh -o StrictHostKeyChecking=no -i private_key.pem $USER@$HOST << 'ENDSSH'
-          cd /path/to/your/docker-compose/directory
+          
+          # Use Certbot to get an SSL certificate (You only need to run this once or when renewing the certificate)
+          # TODO(PM): Delete this after the first run
+          docker run --rm \
+          -v "/etc/letsencrypt:/etc/letsencrypt" \
+          -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
+          -v "~/letsencrypt:/data/letsencrypt" \
+          -v "/var/log/letsencrypt:/var/log/letsencrypt" \
+          certbot/certbot \
+          certonly --webroot \
+          --email up916639@myport.ac.uk --agree-tos --no-eff-email \
+          --webroot-path=/data/letsencrypt \
+          -d airlinestock.co.uk
+
           docker-compose pull
           docker-compose down
           docker-compose up -d
