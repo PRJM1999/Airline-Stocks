@@ -71,16 +71,16 @@ jobs:
           docker-compose down
           docker-compose up -d
 
-          # Use Certbot to get an SSL certificate (You only need to run this once or when renewing the certificate)
-          # TODO(PM): Delete this after the first run
-          docker run --rm \
-          -v "/etc/letsencrypt:/etc/letsencrypt" \
-          -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
-          -v "/certbot-webroot:/var/www/certbot" \
-          -v "/var/log/letsencrypt:/var/log/letsencrypt" \
-          certbot/certbot \
-          certonly --webroot \
-          --email up916639@myport.ac.uk --agree-tos --no-eff-email \
-          --webroot-path=/var/www/certbot \
-          -d airlinestock.co.uk
+          # # Use Certbot to get an SSL certificate (You only need to run this once or when renewing the certificate)
+          # # TODO(PM): Delete this after the first run
+          # docker run --rm \
+          # -v "/etc/letsencrypt:/etc/letsencrypt" \
+          # -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
+          # -v "/certbot-webroot:/var/www/certbot" \
+          # -v "/var/log/letsencrypt:/var/log/letsencrypt" \
+          # certbot/certbot \
+          # certonly --webroot \
+          # --email up916639@myport.ac.uk --agree-tos --no-eff-email \
+          # --webroot-path=/var/www/certbot \
+          # -d airlinestock.co.uk
         ENDSSH
