@@ -10,6 +10,7 @@ services:
         - "--providers.docker.exposedbydefault=false"
         - "--entrypoints.web.address=:80"
         - "--entrypoints.websecure.address=:443"
+        - "--entrypoints.webinternal.address=:3000"
         - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
         - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
         - "--certificatesresolvers.myresolver.acme.email=up916639@email.com"
@@ -23,8 +24,10 @@ services:
         - ./letsencrypt:/letsencrypt
   backend:
     image: pmontgomery27/python-backend-docker
-    ports:
-      - "3000:3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`backend`)"
+      - "traefik.http.routers.backend.entrypoints=webinternal"
   frontend:
     container_name: docker-react-c
     image: pmontgomery27/docker-react-i

@@ -72,7 +72,6 @@ jobs:
           docker-compose up -d
 
           # Remove dangling images
-          # Currently Monitoring Space for now
-          # docker image prune -f
+          docker image prune -f
 
         ENDSSH
