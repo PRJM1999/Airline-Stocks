@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import sampleapi from "../../public/assets/sampleapi.json";
 import { format, addDays } from "date-fns";
 
 function Var() {
@@ -14,7 +13,9 @@ function Var() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("https://api.airlinestock.co.uk/initial_data");
+      const response = await fetch(
+        "https://api.airlinestock.co.uk/initial_data"
+      );
       const data = await response.json();
       setData(data);
       setTime(data.date);
@@ -107,7 +108,7 @@ function Var() {
           className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
         >
           Fetch Data
-        </button>        
+        </button>
       </div>
       <p className="text-gray-600 mt-10">Last Updated: {time}</p>
     </div>

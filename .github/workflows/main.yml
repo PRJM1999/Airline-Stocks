@@ -44,11 +44,11 @@ jobs:
        docker push pmontgomery27/python-backend-docker:latest
 
     # Build and push cpp-server -  no changes planned for some time so commented out
-    # - name: Build cpp-server Image
-    #   run: docker build --platform linux/amd64 -t pmontgomery27/cpp-server:latest -f cpp-server/Dockerfile cpp-server
+    - name: Build cpp-server Image
+      run: docker build --platform linux/amd64 -t pmontgomery27/cpp-server:latest -f cpp-server/Dockerfile cpp-server
 
-    # - name: Push cpp-server Image
-    #   run: docker push pmontgomery27/cpp-server:latest
+    - name: Push cpp-server Image
+      run: docker push pmontgomery27/cpp-server:latest
 
     # Deploy to EC2
     - name: Deploy to EC2

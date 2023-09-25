@@ -46,7 +46,7 @@ const Options = (props: Props) => {
     };
 
     try {
-      fetch(`http://18.168.204.211:2000${endpoint}`, {
+      fetch(`https://cpp.airlinestock.co.uk${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +55,6 @@ const Options = (props: Props) => {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
           // Set Option Price as a number and round to 2 decimal places
           setOptionPrice(parseFloat(result.optionPrice.toFixed(2)));
         })

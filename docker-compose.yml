@@ -11,6 +11,7 @@ services:
         - "--entrypoints.web.address=:80"
         - "--entrypoints.websecure.address=:443"
         - "--entrypoints.webinternal.address=:3000"
+        - "--entrypoints.webcpp.address=:2000"
         - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
         - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
         - "--certificatesresolvers.myresolver.acme.email=up916639@email.com"
@@ -18,7 +19,7 @@ services:
       ports:
         - "80:80"
         - "443:443"
-        - "8080:8080" # Dashboard
+        - "8080:8080"
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
         - ./letsencrypt:/letsencrypt
@@ -59,8 +60,16 @@ services:
       - webnet
   cpp-server:
     image: pmontgomery27/cpp-server
-    ports:
-      - "2000:2000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cpp-server.rule=Host(`cpp.airlinestock.co.uk`)"
+      - "traefik.http.routers.cpp-server.entrypoints=webcpp"
+      - "traefik.http.routers.cpp-server.middlewares=redirect-to-https"
+      - "traefik.http.routers.cpp-server-secured.rule=Host(`cpp.airlinestock.co.uk`)"
+      - "traefik.http.routers.cpp-server-secured.entrypoints=websecure"
+      - "traefik.http.routers.cpp-server-secured.tls.certresolver=myresolver"
+    networks:
+      - webnet
 
 networks:
   webnet:
