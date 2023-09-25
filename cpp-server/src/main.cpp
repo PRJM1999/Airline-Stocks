@@ -31,8 +31,16 @@ void handleMonteCarloCallOption(const http_request &request)
     }
 
     json::value responseJson;
+    json::value requestBody; 
 
-    json::value requestBody = request.extract_json().get();
+    request.extract_json().then([&](pplx::task<json::value> task) {
+        try {
+            requestBody = task.get();
+            std::cout << "requestBody: " << requestBody << std::endl;
+        } catch(const std::exception &e) {
+            std::cout << "Error extracting json: " << e.what() << std::endl;
+        }
+    }).wait();
 
     // Retrieve the required parameters from the request
     double S, K, r, sigma, T;
@@ -104,7 +112,6 @@ void handleBlackScholes(const http_request &request)
         r = requestBody["interestRate"].as_double();
         sigma = requestBody["volatility"].as_double();
         T = requestBody["timeToMaturity"].as_double();
-        // numSimulations = requestBody["numSimulations"].as_integer();
     }
     catch (const std::exception &e)
     {

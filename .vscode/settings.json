@@ -1,3 +1,6 @@
 {
-    "cmake.sourceDirectory": "/Users/patrickmontgomery/Documents/Main Code/Airline-Stocks/cpp-server"
+    "cmake.sourceDirectory": "/Users/patrickmontgomery/Documents/Main Code/Airline-Stocks/cpp-server",
+    "files.associations": {
+        "ostream": "cpp"
+    }
 }
