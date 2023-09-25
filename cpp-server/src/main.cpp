@@ -102,7 +102,7 @@ void handleBlackScholes(const http_request &request)
         return;
     }
 
-    // json::value responseJson;
+    json::value responseJson;
 
     // json::value requestBody = request.extract_json().get();
 
