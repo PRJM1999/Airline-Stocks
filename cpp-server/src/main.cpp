@@ -85,6 +85,9 @@ void handleBlackScholes(const http_request &request)
     response.headers().add("Access-Control-Allow-Credentials", "true");
     response.headers().add("Access-Control-Max-Age", "86400");
 
+    // console log method started
+    std::cout << "handleBlackScholes method started" << std::endl;
+
     if (request.method() == methods::OPTIONS)
     {
         // Respond to preflight requests
