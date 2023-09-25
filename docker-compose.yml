@@ -22,12 +22,20 @@ services:
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
         - ./letsencrypt:/letsencrypt
+      networks:
+        - webnet
   backend:
     image: pmontgomery27/python-backend-docker
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`backend`)"
-      - "traefik.http.routers.backend.entrypoints=webinternal"
+      - "traefik.http.routers.backend.rule=Host(`api.airlinestock.co.uk`)"
+      - "traefik.http.routers.backend.entrypoints=web"
+      - "traefik.http.routers.backend.middlewares=redirect-to-https"
+      - "traefik.http.routers.backend-secured.rule=Host(`api.airlinestock.co.uk`)"
+      - "traefik.http.routers.backend-secured.entrypoints=websecure"
+      - "traefik.http.routers.backend-secured.tls.certresolver=myresolver"
+    networks:
+      - webnet
   frontend:
     container_name: docker-react-c
     image: pmontgomery27/docker-react-i
@@ -47,8 +55,12 @@ services:
       - ./certbot/www:/var/www/certbot
       - /app/node_modules
       - .:/app
+    networks:
+      - webnet
   cpp-server:
     image: pmontgomery27/cpp-server
     ports:
       - "2000:2000"
 
+networks:
+  webnet:

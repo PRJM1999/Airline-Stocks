@@ -14,7 +14,7 @@ function Var() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("https://18.168.204.211:3000/initial_data");
+      const response = await fetch("https://api.airlinestock.co.uk/initial_data");
       const data = await response.json();
       setData(data);
       setTime(data.date);
@@ -24,7 +24,7 @@ function Var() {
   }, []);
 
   const fetchData = async () => {
-    const response = await fetch("https://18.168.204.211:3000/model");
+    const response = await fetch("https://api.airlinestock.co.uk/model");
     const data = await response.json();
     if (data.message === "Internal Server Error") {
       console.warn("Internal Server Error - Api limit reached");
