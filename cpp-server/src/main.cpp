@@ -88,6 +88,9 @@ void handleBlackScholes(const http_request &request)
     // console log method started
     std::cout << "handleBlackScholes method started" << std::endl;
 
+    // Console log the request method
+    std::cout << "request method: " << request.method() << std::endl;
+
     if (request.method() == methods::OPTIONS)
     {
         // Respond to preflight requests
@@ -104,6 +107,16 @@ void handleBlackScholes(const http_request &request)
 
     // console log the request body
     std::cout << "requestBody: " << requestBody << std::endl;
+
+    json::value requestBody2; 
+    request.extract_json().then([&](pplx::task<json::value> task) {
+        try {
+            requestBody2 = task.get();
+            std::cout << "requestBodyAsync: " << requestBody2 << std::endl;
+        } catch(const std::exception &e) {
+            std::cout << "Error extracting json: " << e.what() << std::endl;
+        }
+    }).wait();
 
     // Retrieve the required parameters from the request
     double S, K, r, sigma, T;
