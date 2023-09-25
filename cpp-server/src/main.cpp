@@ -87,9 +87,9 @@ void handleBlackScholes(const http_request &request)
 
     // console log method started
     std::cout << "handleBlackScholes method started" << std::endl;
-
-    // Console log the request method
-    std::cout << "request method: " << request.method() << std::endl;
+  
+    // Check if request.method() and methods::OPTIONS are equal
+    std::cout << "request.method() == methods::OPTIONS: " << (request.method() == methods::OPTIONS) << std::endl;
 
     if (request.method() == methods::OPTIONS)
     {
@@ -99,20 +99,21 @@ void handleBlackScholes(const http_request &request)
         // response set status code
         response.set_status_code(status_codes::OK);
         request.reply(response);
+        return;
     }
 
-    json::value responseJson;
+    // json::value responseJson;
 
-    json::value requestBody = request.extract_json().get();
+    // json::value requestBody = request.extract_json().get();
 
-    // console log the request body
-    std::cout << "requestBody: " << requestBody << std::endl;
+    // // console log the request body
+    // std::cout << "requestBody: " << requestBody << std::endl;
 
-    json::value requestBody2; 
+    json::value requestBody; 
     request.extract_json().then([&](pplx::task<json::value> task) {
         try {
-            requestBody2 = task.get();
-            std::cout << "requestBodyAsync: " << requestBody2 << std::endl;
+            requestBody = task.get();
+            std::cout << "requestBodyAsync: " << requestBody << std::endl;
         } catch(const std::exception &e) {
             std::cout << "Error extracting json: " << e.what() << std::endl;
         }
