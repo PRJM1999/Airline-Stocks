@@ -60,6 +60,8 @@ services:
       - webnet
   cpp-server:
     image: pmontgomery27/cpp-server
+    ports:
+      - "2000:2000"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.cpp-server.rule=Host(`cpp.airlinestock.co.uk`)"
