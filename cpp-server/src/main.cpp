@@ -23,7 +23,6 @@ void handleMonteCarloCallOption(const http_request &request)
     {
         // Respond to preflight requests
         response.headers().add("Allow", "GET, POST, OPTIONS");
-        response.headers().add("Content-Length", "0");
         // response set status code
         response.set_status_code(status_codes::OK);
         request.reply(response);
