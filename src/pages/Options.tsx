@@ -46,7 +46,7 @@ const Options = (props: Props) => {
     };
 
     try {
-      fetch(`https://cpp.airlinestock.co.uk/black_scholes`, {
+      fetch(`https://cpp.airlinestock.co.uk${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

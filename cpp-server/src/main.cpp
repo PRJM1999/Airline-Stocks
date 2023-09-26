@@ -16,14 +16,10 @@ void handleMonteCarloCallOption(const http_request &request)
     response.headers().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     response.headers().add("Access-Control-Allow-Headers", "Content-Type");
     response.headers().add("Content-Type", "application/json");
-    response.headers().add("Access-Control-Allow-Credentials", "true");
-    response.headers().add("Access-Control-Max-Age", "86400");
 
     if (request.method() == methods::OPTIONS)
     {
         // Respond to preflight requests
-        response.headers().add("Allow", "GET, POST, OPTIONS");
-        // response set status code
         response.set_status_code(status_codes::OK);
         request.reply(response);
         return;
@@ -80,8 +76,6 @@ void handleBlackScholes(const http_request &request)
     if (request.method() == methods::OPTIONS)
     {
         // Respond to preflight requests
-        // response.headers().add("Content-Length", "0");
-        // response set status code
         response.set_status_code(status_codes::OK);
         request.reply(response);
         return;
