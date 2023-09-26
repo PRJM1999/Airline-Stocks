@@ -1,5 +1,18 @@
 version: '3'
 
+http:
+  middlewares:
+    cors-headers:
+      headers:
+        accessControlAllowMethods:
+          - "GET"
+          - "POST"
+          - "OPTIONS"
+        accessControlAllowOrigin: "*"
+        accessControlMaxAge: 86400
+        accessControlAllowHeaders:
+          - "Content-Type"
+
 services:
   traefik:
       image: traefik:v2.4
