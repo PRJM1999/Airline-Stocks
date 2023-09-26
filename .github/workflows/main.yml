@@ -31,17 +31,17 @@ jobs:
        docker build --target production-ready --platform linux/amd64 -t pmontgomery27/docker-react-i:latest -f Dockerfile .
        docker push pmontgomery27/docker-react-i:latest
 
-    # # Build and test Python server
-    # - name: Build Python Server Test Image
-    #   run: docker build --target tester --platform linux/amd64 -t pmontgomery27/docker-python-server:test -f server/Dockerfile server
+    # Build and test Python server
+    - name: Build Python Server Test Image
+      run: docker build --target tester --platform linux/amd64 -t pmontgomery27/docker-python-server:test -f server/Dockerfile server
 
-    # - name: Run Python Server Tests
-    #   run: docker run pmontgomery27/docker-python-server:test pytest
+    - name: Run Python Server Tests
+      run: docker run pmontgomery27/docker-python-server:test pytest
 
-    # - name: Build and Push Python Server Production Image
-    #   run: |
-    #    docker build --target production-ready --platform linux/amd64 -t pmontgomery27/python-backend-docker:latest -f server/Dockerfile server
-    #    docker push pmontgomery27/python-backend-docker:latest
+    - name: Build and Push Python Server Production Image
+      run: |
+       docker build --target production-ready --platform linux/amd64 -t pmontgomery27/python-backend-docker:latest -f server/Dockerfile server
+       docker push pmontgomery27/python-backend-docker:latest
 
     # Build and push cpp-server
     - name: Build cpp-server Image
