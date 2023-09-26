@@ -93,7 +93,10 @@ void handleBlackScholes(const http_request &request)
         // response set status code
         response.set_status_code(status_codes::OK);
         // Check response headers
-        std::cout << "Response headers: " << response.headers() << std::endl;
+        for (const auto &header : response.headers())
+        {
+            std::cout << header.first << ": " << header.second << std::endl;
+        }
         request.reply(response);
 
         std::cout << "Responded to OPTIONS request." << std::endl;
