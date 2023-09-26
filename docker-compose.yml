@@ -79,7 +79,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.cpp-server.rule=Host(`cpp.airlinestock.co.uk`)"
       - "traefik.http.routers.cpp-server.entrypoints=webcpp"
-      - "traefik.http.routers.cpp-server.middlewares=redirect-to-https,cors-headers"
+      - "traefik.http.routers.cpp-server.middlewares=cors-headers,redirect-to-https"
       - "traefik.http.routers.cpp-server-secured.rule=Host(`cpp.airlinestock.co.uk`)"
       - "traefik.http.routers.cpp-server-secured.entrypoints=websecure"
       - "traefik.http.routers.cpp-server-secured.middlewares=redirect-to-https,cors-headers"
