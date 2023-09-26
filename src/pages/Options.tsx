@@ -46,6 +46,11 @@ const Options = (props: Props) => {
     };
 
     try {
+      console.log(
+        `Fetching from endpoint: https://cpp.airlinestock.co.uk${endpoint}`
+      );
+      console.log(`Sending data:`, data);
+
       fetch(`https://cpp.airlinestock.co.uk${endpoint}`, {
         method: "POST",
         headers: {
@@ -53,16 +58,26 @@ const Options = (props: Props) => {
         },
         body: JSON.stringify(data),
       })
-        .then((response) => response.json())
+        .then((response) => {
+          console.log("Raw response: ", response);
+          console.log("HTTP status code: ", response.status);
+          console.log("HTTP headers: ", Array.from(response.headers.entries()));
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          return response.json();
+        })
         .then((result) => {
-          // Set Option Price as a number and round to 2 decimal places
+          console.log("Parsed JSON response: ", result);
           setOptionPrice(parseFloat(result.optionPrice.toFixed(2)));
         })
         .catch((error) => {
-          console.error(error);
+          console.error("Error in fetch: ", error);
         });
     } catch (error) {
-      console.error(error);
+      console.error("Unexpected error: ", error);
     }
   };
 
@@ -179,7 +194,7 @@ const Options = (props: Props) => {
           Calculate
         </button>
       </div>
-      <div className="h-5"/>
+      <div className="h-5" />
       {optionPrice !== 0 && (
         <div className="flex items-center">
           <h1 className="text-2xl font-bold mb-2 text-gray-600">

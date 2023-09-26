@@ -73,39 +73,19 @@ void handleBlackScholes(const http_request &request)
 {
     // Enable CORS
     http_response response;
-
-    // Set default headers
+    response.headers().add("Access-Control-Allow-Origin", "*");
+    response.headers().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    response.headers().add("Access-Control-Allow-Headers", "Content-Type");
     response.headers().add("Content-Type", "application/json");
-
-    std::cout << "Before checking OPTIONS method." << std::endl;
 
     if (request.method() == methods::OPTIONS)
     {
-        try {
-        std::cout << "Inside OPTIONS handling." << std::endl;
-
-        // Enable CORS specifically for the preflight request
-        response.headers().add("Access-Control-Allow-Origin", "*");
-        response.headers().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-        response.headers().add("Access-Control-Allow-Headers", "Content-Type");
-        response.headers().add("Access-Control-Max-Age", "86400");
+        // Respond to preflight requests
         response.headers().add("Content-Length", "0");
         // response set status code
         response.set_status_code(status_codes::OK);
-        // Check response headers
-        for (const auto &header : response.headers())
-        {
-            std::cout << header.first << ": " << header.second << std::endl;
-        }
         request.reply(response);
-
-        std::cout << "Responded to OPTIONS request." << std::endl;
         return;
-        } catch(const std::exception &e) {
-            std::cout << "Error handling OPTIONS request: " << e.what() << std::endl;
-        } catch(...) {
-            std::cout << "Error handling OPTIONS request." << std::endl;
-        }
     }
 
     json::value responseJson;
