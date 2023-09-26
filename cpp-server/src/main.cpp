@@ -81,7 +81,7 @@ void handleBlackScholes(const http_request &request)
     if (request.method() == methods::OPTIONS)
     {
         // Respond to preflight requests
-        response.headers().add("Content-Length", "0");
+        // response.headers().add("Content-Length", "0");
         // response set status code
         response.set_status_code(status_codes::OK);
         request.reply(response);
