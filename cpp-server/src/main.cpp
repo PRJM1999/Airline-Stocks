@@ -31,16 +31,11 @@ void handleMonteCarloCallOption(const http_request &request)
     }
 
     json::value responseJson;
-    json::value requestBody; 
 
-    request.extract_json().then([&](pplx::task<json::value> task) {
-        try {
-            requestBody = task.get();
-            std::cout << "requestBody: " << requestBody << std::endl;
-        } catch(const std::exception &e) {
-            std::cout << "Error extracting json: " << e.what() << std::endl;
-        }
-    }).wait();
+    json::value requestBody = request.extract_json().get();
+
+    // console log the request body
+    std::cout << "requestBody: " << requestBody << std::endl;
 
     // Retrieve the required parameters from the request
     double S, K, r, sigma, T;
@@ -78,23 +73,17 @@ void handleBlackScholes(const http_request &request)
 {
     // Enable CORS
     http_response response;
-    response.headers().add("Access-Control-Allow-Origin", "*");
-    response.headers().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    response.headers().add("Access-Control-Allow-Headers", "Content-Type");
-    response.headers().add("Content-Type", "application/json");
-    response.headers().add("Access-Control-Allow-Credentials", "true");
-    response.headers().add("Access-Control-Max-Age", "86400");
 
-    // console log method started
-    std::cout << "handleBlackScholes method started" << std::endl;
-  
-    // Check if request.method() and methods::OPTIONS are equal
-    std::cout << "request.method() == methods::OPTIONS: " << (request.method() == methods::OPTIONS) << std::endl;
+    // Set default headers
+    response.headers().add("Content-Type", "application/json");
 
     if (request.method() == methods::OPTIONS)
     {
-        // Respond to preflight requests
-        response.headers().add("Allow", "GET, POST, OPTIONS");
+        // Enable CORS specifically for the preflight request
+        response.headers().add("Access-Control-Allow-Origin", "https://airlinestock.co.uk");
+        response.headers().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        response.headers().add("Access-Control-Allow-Headers", "Content-Type");
+        response.headers().add("Access-Control-Max-Age", "86400");
         response.headers().add("Content-Length", "0");
         // response set status code
         response.set_status_code(status_codes::OK);
@@ -103,11 +92,6 @@ void handleBlackScholes(const http_request &request)
     }
 
     json::value responseJson;
-
-    // json::value requestBody = request.extract_json().get();
-
-    // // console log the request body
-    // std::cout << "requestBody: " << requestBody << std::endl;
 
     json::value requestBody; 
     request.extract_json().then([&](pplx::task<json::value> task) {
