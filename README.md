@@ -154,6 +154,7 @@ The server listens on port 2000 inside the container. To run the server, execute
 
 ```bash
 ./build/AirlineStocksServer
+```
 
 ## Development
 To start the development environment for the frontend, run `npm run dev`. To run tests for the frontend, use `npm run test`.
