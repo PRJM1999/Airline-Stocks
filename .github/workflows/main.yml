@@ -64,14 +64,14 @@ jobs:
         # Copy docker-compose.yml to EC2 instance
         scp -o StrictHostKeyChecking=no -i private_key.pem docker-compose.yml $USER@$HOST:~/docker-compose.yml
 
-        # SSH and deploy
-        ssh -o StrictHostKeyChecking=no -i private_key.pem $USER@$HOST << 'ENDSSH'
+        # SSH and deploy - Currently disabled
+        # ssh -o StrictHostKeyChecking=no -i private_key.pem $USER@$HOST << 'ENDSSH'
           
-          docker-compose pull
-          docker-compose down
-          docker-compose up -d
+        #   docker-compose pull
+        #   docker-compose down
+        #   docker-compose up -d
 
-          # Remove dangling images
-          docker image prune -f
+        #   # Remove dangling images
+        #   docker image prune -f
 
-        ENDSSH
+        # ENDSSH
