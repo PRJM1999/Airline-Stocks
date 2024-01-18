@@ -3,6 +3,8 @@
 ## Overview
 This project is a website for analyzing airline stocks. It can be reached at [airlinestock.co.uk](https://airlinestock.co.uk). It consists of a frontend and a backend. The frontend is written in TypeScript using React and Redux with Tailwind and is served using Nginx. The backend is written in Python and is served using Gunicorn. Its main function is to provide information on airline stocks around the world, provide articles discuss mergers and growth of major airlines, and also produce predictions using a vector autoregression model.
 
+[Note: airlinestock.co.uk is no longer operational due to personal server costs. The project remains as a showcase of the work done and can be used as a reference or starting point for similar projects.]
+
 ### Frontend (React Container)
 The frontend is built using Vite and React and features four main pages:
 
